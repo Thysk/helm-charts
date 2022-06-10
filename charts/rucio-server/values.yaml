@@ -166,7 +166,8 @@ ingress:
     # nginx.ingress.kubernetes.io/frontend-entry-points: http
     # nginx.ingress.kubernetes.io/redirect-entry-point: https
   path: /
-  hosts: []
+  hosts: 
+      - server-rucio-server
   #   - my.rucio.test
   tls:
     - secretName: rucio-server.tls-secret
@@ -197,7 +198,8 @@ authIngress:
     nginx.ingress.kubernetes.io/rewrite-target: /auth/$2
 
   path: /auth(/|$)(.*)
-  hosts: []
+  hosts: 
+    - server-rucio-server-auth
   #   - my.rucio.test
   # tls:
   #   - secretName: rucio-auth.tls-secret
