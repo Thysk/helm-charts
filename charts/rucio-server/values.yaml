@@ -102,7 +102,7 @@ monitoring:
   nativeMetricsPort: 8081
   interval: 30s
   telemetryPath: /metrics
-  namespace: monitoring
+  namespace: cattle-monitoring-system
   labels:
     release: prometheus-operator
 
