@@ -104,7 +104,7 @@ monitoring:
   telemetryPath: /metrics
   namespace: cattle-monitoring-system
   labels:
-    release: prometheus-operator
+    release: rancher-monitoring
 
 metricsExporterResources:
   limits:
@@ -162,8 +162,9 @@ ingress:
   enabled: true
   annotations: {}
     kubernetes.io/ingress.class: nginx
-    # traefik.ingress.kubernetes.io/frontend-entry-points: http
-    # traefik.ingress.kubernetes.io/redirect-entry-point: https
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    # nginx.ingress.kubernetes.io/frontend-entry-points: http
+    # nginx.ingress.kubernetes.io/redirect-entry-point: https
   path: /
   hosts: []
   #   - my.rucio.test
@@ -192,8 +193,10 @@ authIngress:
   annotations:
   #  kubernetes.io/ingress.class: nginx
   #  nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-  #  nginx.ingress.kubernetes.io/ssl-redirect: "true"
-  path: /auth
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/rewrite-target: /auth/$2
+
+  path: /auth(/|$)(.*)
   hosts: []
   #   - my.rucio.test
   # tls:
